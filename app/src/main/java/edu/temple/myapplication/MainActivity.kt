@@ -12,7 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
-
+//fonts.google.com/icons
 class MainActivity : AppCompatActivity() {
 
     var binder: TimerService.TimerBinder? = null
@@ -59,13 +59,23 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.stopButton).setOnClickListener {
             binder?.stop()
         }
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+when (item.itemId) {
+    R.id.action_start -> binder?.start(100)
+    R.id.action_pause -> binder?.pause()
+    R.id.action_stop -> binder?.stop()
+    else -> return false
+}
         return super.onOptionsItemSelected(item)
     }
 
